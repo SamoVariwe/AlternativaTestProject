@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
 
     public float horizontalSpeed=0.1f;
 
+
+
     public GameObject AttractingPlanet { get; set; }
+
+
     
     private void Start()
     {
@@ -21,12 +25,12 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
     
     private void Update()
     {
-        if (AttractingPlanet != null) Debug.Log(AttractingPlanet.ToString());
+
     }
 
     private void FixedUpdate()
     {
-        
+        if (AttractingPlanet != null) FixZRotation();
         Vector2 direction = transform.right*Input.GetAxis("Horizontal");
         if(direction.x!=0)HorizontalMoove(direction);
     }
@@ -38,7 +42,11 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
         rb2d.velocity= (direction * horizontalSpeed * Time.fixedDeltaTime);
     }
 
-    
+    private void FixZRotation()
+    {
+        Quaternion rotationRelativeToPlanet = Quaternion.FromToRotation(-transform.up, AttractingPlanet.transform.position - transform.position);
+        transform.rotation = rotationRelativeToPlanet;
+    }
     
 
     
