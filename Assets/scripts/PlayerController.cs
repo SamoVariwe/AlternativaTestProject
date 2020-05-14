@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
 
         transform.rotation = transform.rotation* rotationRelativeToPlanet;
 
+        //hard fix bug with x and y rotation
         transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
         
     }
