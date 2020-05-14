@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof( Collider2D))]
 public class PlanetGravity : MonoBehaviour
 {
     private  HashSet<Rigidbody2D> AffectedRigidBodys= new HashSet<Rigidbody2D>();
@@ -16,8 +17,7 @@ public class PlanetGravity : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         foreach(Rigidbody2D rb2d in AffectedRigidBodys)

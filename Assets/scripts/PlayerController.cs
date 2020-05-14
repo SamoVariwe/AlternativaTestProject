@@ -9,12 +9,8 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
     private SpriteRenderer spriteRender;
 
     public float horizontalSpeed=0.1f;
-
-
-
+    
     public GameObject AttractingPlanet { get; set; }
-
-
     
     private void Start()
     {
@@ -23,8 +19,6 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
         spriteRender = GetComponentInChildren<SpriteRenderer>();
     }
     
-    
-
     private void FixedUpdate()
     {
         if (AttractingPlanet != null) FixZRotation();
