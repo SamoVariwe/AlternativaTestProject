@@ -11,7 +11,7 @@ public class FollowingObject : MonoBehaviour
     
     void Start()
     {
-        
+        transform.SetParent(objectsToFollow[0].transform);
     }
 
     
