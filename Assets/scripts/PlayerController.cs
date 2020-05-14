@@ -23,31 +23,36 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
         spriteRender = GetComponentInChildren<SpriteRenderer>();
     }
     
-    private void Update()
-    {
-
-    }
+    
 
     private void FixedUpdate()
     {
         if (AttractingPlanet != null) FixZRotation();
-        Vector2 direction = transform.right*Input.GetAxis("Horizontal");
+
+        Vector2 direction = Vector2.right *Input.GetAxis("Horizontal");
+
         if(direction.x!=0)HorizontalMoove(direction);
     }
 
     private void HorizontalMoove(Vector2 direction)
     {
         if (direction.x > 0) spriteRender.flipX = false;
+
         if(direction.x<0) spriteRender.flipX = true;
-        rb2d.velocity= (direction * horizontalSpeed * Time.fixedDeltaTime);
+
+        transform.Translate(direction * horizontalSpeed * Time.fixedDeltaTime,Space.Self);
     }
 
     private void FixZRotation()
     {
         Quaternion rotationRelativeToPlanet = Quaternion.FromToRotation(-transform.up, AttractingPlanet.transform.position - transform.position);
-        transform.rotation = rotationRelativeToPlanet;
-    }
-    
 
-    
+        transform.rotation = transform.rotation* rotationRelativeToPlanet;
+
+        transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
+        
+    }
+
+
+
 }

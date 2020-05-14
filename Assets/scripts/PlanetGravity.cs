@@ -23,9 +23,13 @@ public class PlanetGravity : MonoBehaviour
         foreach(Rigidbody2D rb2d in AffectedRigidBodys)
         {
             Vector2 bodyToPlanetVector = ((Vector2)transform.position - rb2d.position);
+
             float distance = bodyToPlanetVector.magnitude;
+
             Vector2 direction = bodyToPlanetVector.normalized;
+
             float strength = PlanetMass * rb2d.mass * GravityConst / Mathf.Pow(distance, 2);
+
             rb2d.AddForce(direction * strength);
         }
     }
@@ -35,6 +39,7 @@ public class PlanetGravity : MonoBehaviour
         if (collision.attachedRigidbody != null)
         {
             SetAPlanetToABody(collision,true);
+
             AffectedRigidBodys.Add(collision.attachedRigidbody);
         }
     }
@@ -43,6 +48,7 @@ public class PlanetGravity : MonoBehaviour
         if (collision.attachedRigidbody != null)
         {
             SetAPlanetToABody(collision,false);
+
             AffectedRigidBodys.Remove(collision.attachedRigidbody);
         }
     }
@@ -53,7 +59,9 @@ public class PlanetGravity : MonoBehaviour
         if (BodyToFixRotation != null)
         {
             if(SetOrRemove==true)
+
             BodyToFixRotation.AttractingPlanet = gameObject;
+
             else BodyToFixRotation.AttractingPlanet = null;
         }
         
