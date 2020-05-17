@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour,IRotationConstratable
+public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
 
     public float horizontalSpeed=0.1f;
     
-    public GameObject AttractingPlanet { get; set; }
     
     private void Start()
     {
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
     
     private void FixedUpdate()
     {
-        if (AttractingPlanet != null) FixZRotation();
 
         Vector2 direction = Vector2.right *Input.GetAxis("Horizontal");
 
@@ -37,17 +35,11 @@ public class PlayerController : MonoBehaviour,IRotationConstratable
         transform.Translate(direction * horizontalSpeed * Time.fixedDeltaTime,Space.Self);
     }
 
-    private void FixZRotation()
+   
+
+    public void EnteredShipTrigger()
     {
-        Quaternion rotationRelativeToPlanet = Quaternion.FromToRotation(-transform.up, AttractingPlanet.transform.position - transform.position);
 
-        transform.rotation = transform.rotation* rotationRelativeToPlanet;
-
-        //hard fix bug with x and y rotation
-        transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
-        
     }
-
-
-
+    
 }

@@ -5,5 +5,7 @@ using UnityEngine;
 public interface IRotationConstratable 
 {
      GameObject AttractingPlanet { get; set; }
+
+     
     
 }
