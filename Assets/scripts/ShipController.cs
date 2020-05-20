@@ -56,7 +56,7 @@ public class ShipController : MonoBehaviour
     private void EngineBoost()
     {
 
-        rb2d.AddForce(Vector2.up*linearSpeed);
+        rb2d.AddRelativeForce(Vector2.up*linearSpeed);
 
     }
 
